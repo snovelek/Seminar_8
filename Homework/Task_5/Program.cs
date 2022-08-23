@@ -23,7 +23,7 @@ for (int i = 1; i < mas.GetLength(0); i++){
                 }
             }
         }
-    }   
+    }
 int sum=0;
 for (int i =0;i<mas.Length;i++){
     Console.Write($"  {mas[i]}");

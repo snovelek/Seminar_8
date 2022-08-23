@@ -5,30 +5,47 @@
 // 45(1,0,0) 53(1,0,1)
 
 
-int [,,] FillMatrix (int r=2, int c=2,int d=2){
+int [,,] FillMatrix (int [] mass ,int r=2, int c=2,int d=2){
     int [,,]arr= new int [r,c,d];
    // int lastnum=-1;
     int randnum;
-    arr[0,0,0]=new Random().Next(10,17);
+    int o = 0;
+    //arr[0,0,0]=new Random().Next(10,18); 
     for (int i=0;i<r;i++){
         for (int j=0;j<c;j++){                
-            for (int k=0;k<d;k++){
-                randnum=new Random().Next(10,17);
-                arr[i,j,k]=srav(arr,i,j,k,randnum);
-            //     randnum=new Random().Next(10,18);
-            //     if (randnum==lastnum){
-            //         arr[i,j,k] = new Random().Next(10,100);
-            //     }else{
-            // arr[i,j,k]=randnum;
-            // lastnum=randnum;
-            //     }
+             for (int k=0;k<d;k++){
+                arr[i,j,k]=mass[o];
+                o++;
+            //{
+            //     randnum=new Random().Next(10,12);
+            //     System.Console.WriteLine($"randnum- {randnum} [{i},{j},{k}]");
+            //         for (int q = 0; q < i; q++)
+            //         {
+            //             for (int w = 0; w < j; w++)
+            //             {
+            //                 for (int e = 0; e < k; e++)
+            //                 {
+            //                     if (randnum==arr[q,w,e]){
+            //                         System.Console.WriteLine("dsa");
+            //                         randnum=new Random().Next(10,18);
+            //                         e=-1;
+                                      
 
-
-            //Console.Write($" {arr[i,j]} ");
+            //                     }
+            //                     else{
+                                    
+            //                         if (q==i-1 || w==j-1 || e==k-1){
+            //                         System.Console.WriteLine($"ddddd {q},{w},{e}");
+            //                             arr[q,w,e]=randnum;
+            //                     }
+            // }
+            //                 }
+            //             }
+            //         }
+                         }
         }
-        //Console.WriteLine();
     }
-}
+
             Console.WriteLine();
     return arr;
 }
@@ -45,23 +62,32 @@ void PrintArray(int [,,] arr3){
     }
 }
 
-int srav (int [,,]arr4,int a,int b,int c,int rand){
-    int newnumber=10;
-    for (int i = 0; i <= a; i++){
-        for (int j = 0; j <= b; j++){
-            for (int k = 0; k <= c; k++){
-               if (arr4[i,j,k]==rand){
-                rand = new Random().Next(10,17);               
-               }
+int [] ArrayRand(){ // создаёт массив из 8 неповторяющихся элементов
+    int [] mas = new int [8];
+    int randnum;
+    mas[0]=new Random().Next(10,18); // Такой промежуток выбрал для наглядности того, что точно будут созданы неповторяющиеся элементы)
+    for (int i = 1; i < mas.GetLength(0); i++){
+        randnum=new Random().Next(10,18);
+            for (int j=0;j<i;j++){
+                if (randnum==mas[j]){
+                    randnum=new Random().Next(10,18);
+                    j=-1;    
+                }
+                else{
+                    if (j==i-1){
+                    mas[i]=randnum;
+                    }
+                }
             }
         }
-    }
-    return rand;
+        return mas;
 }
 
 
+int []masRand=ArrayRand();
 
-//int[,,] mas = new int [2,2,2];
-int [,,]mas = FillMatrix();
+int [,,]mas = FillMatrix(masRand);
 PrintArray(mas);
+
+Console.WriteLine(String.Join(", ",masRand));
 
